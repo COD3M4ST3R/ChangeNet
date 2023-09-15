@@ -1,8 +1,21 @@
-
 #!/bin/dash
 
-
 COMMAND_NAME="s"
+
+RED='\033[0;31m'
+GREEN='\033[0;32m'
+ORANGE='\033[0;33m'
+BLUE='\033[0;34m'
+PURPLE='\033[0;35m'
+YELLOW='\033[0;33m'
+BOLD_RED='\033[1;31m'
+BOLD_GREEN='\033[1;32m'
+BOLD_ORANGE='\033[1;33m'
+BOLD_BLUE='\033[1;34m'
+BOLD_PURPLE='\033[1;35m'
+BOLD_YELLOW='\033[1;33m'
+BOLD_WHITE='\033[1m'
+NC='\033[0m' # No Colornilter
 
 function s()
 {
@@ -11,7 +24,6 @@ function s()
 
     elif [[ $1 == "--usage" ]];then
         display_usage
-
 
     elif [[ $# -eq 1 ]];then # Change to network type that has been ordered.
 	    if [ $1 == "wifi" ]  || [ $1 == "w" ];then
@@ -22,7 +34,6 @@ function s()
             # connect to ethernet as ordered.
             connect_ethernet
         fi
-
 
     elif [[ $# -eq 0 ]];then # No any command has been provided, change \
     # should be in between known connections.
@@ -51,7 +62,6 @@ function s()
                 connect_wifi 
             elif [[ $currentTYPE == *"wireless"* ]];then
                 connect_ethernet      
-
             else
                 echo "Can not detect the type of network."
             fi
@@ -69,15 +79,11 @@ function s()
     fi
 }
 
-
-
 function display_help ()
 {
         echo ""
         echo ""
         echo ""
-
-
         echo -e "${BOLD_WHITE}Changes from wifi to ethernet or viceversa.${NC}"
         echo -e "${BOLD_WHITE}If you are currently offline, wifi ${NC}"
         echo -e "${BOLD_WHITE}will be selected as a default connection.${NC}"
@@ -85,8 +91,6 @@ function display_help ()
         
         return 0
 }
-
-
 
 function display_usage ()
 {
@@ -97,10 +101,10 @@ function display_usage ()
         echo "   : Changes the networks in between." 
         echo ""
         echo -e "${BOLD_BLUE}${COMMAND_NAME}${NC}${BOLD_YELLOW} w${NC}||${BOLD_YELLOW}wifi${NC}"
-	    echo "   : Changes to known wifi network."
+	echo "   : Changes to known wifi network."
         echo ""
         echo -e "${BOLD_BLUE}${COMMAND_NAME}${NC}${BOLD_YELLOW} e${NC}||${BOLD_YELLOW}ethernet${NC}"
-	    echo "   : Changes to known ethernet network."        
+        echo "   : Changes to known ethernet network."        
         echo ""
         echo ""
         echo ""
@@ -108,20 +112,15 @@ function display_usage ()
         return 0
 }
 
-
-
 function connect_wifi ()
 {
     if [ "`nmcli con show --active`" ];then
-
         #current=`ip route | grep default | sed -e "s/^.*dev.//" -e "s/.proto.*//"`
         currentUUID=`nmcli -t -f UUID con | head -1`
         currentNAME=`nmcli -g NAME con | head -1`
         currentTYPE=`nmcli -g TYPE con | head -1`
-
         nmcli connection down $currentUUID  
     fi
-
 
     # Look for known available wifi
     iterator=1
@@ -170,8 +169,6 @@ function connect_wifi ()
     done    
 }
 
-
-
 function connect_ethernet ()
 {
     if [ "`nmcli con show --active`" ];then
@@ -179,10 +176,8 @@ function connect_ethernet ()
         currentUUID=`nmcli -t -f UUID con | head -1`
         currentNAME=`nmcli -g NAME con | head -1`
         currentTYPE=`nmcli -g TYPE con | head -1`
-
         nmcli connection down $currentUUID  
     fi
-
 
     # Look for known available ethernet
     iterator=1
