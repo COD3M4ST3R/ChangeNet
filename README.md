@@ -15,7 +15,7 @@ To make things easier, you can get full path of file.
 - copy the full path:
 ```/home/COD3M4ST3R/PROJECTS/BashScripts/change_net.sh```
 - open command prompt and enter command:
-```echo "[[ -s '/<full path of change_net.sh>' ]] && source '/<full path of change_net.sh>'" >> ~/.bashrc```
+```echo "[[ -s '//home/COD3M4ST3R/PROJECTS/BashScripts/change_net.sh' ]] && source '//home/COD3M4ST3R/PROJECTS/BashScripts/change_net.sh'" >> ~/.bashrc```
 
 ## Usage
 ```s```: changes the networks in between
