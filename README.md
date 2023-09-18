@@ -1,6 +1,9 @@
 # ChangeNet
 Changes the network over command prompt between known wifi and wlan.
 
+## Prerequisite
+```nmcli``` is required to run this script. Install it with: ```sudo apt install nmcli```
+
 ## How to Install
 This bash script's path has to be defined in the ~/.bashrc. To do this:
 - extract the 'change_net.sh' at wherever you want to and copy the full path of it.
